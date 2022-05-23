@@ -37,7 +37,7 @@ public class BST<T extends Comparable<? super T>> {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
 
         if (data == null) {
-            throw new IllegalArgumentException("Data can't be null");
+            throw new IllegalArgumentException("ERROR : Data can't be null");
         }
         if (root == null) {
             root = new BSTNode<>(data);
@@ -96,8 +96,7 @@ public class BST<T extends Comparable<? super T>> {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         BSTNode<T> node = new BSTNode<>(data);
         if (data == null) {
-            throw new IllegalArgumentException(
-                    "Cannot remove null data from tree");
+            throw new IllegalArgumentException("ERROR : Cannot remove null data from tree");
         }
         root = removeHelp(data, root, node);
         size--;
@@ -106,7 +105,7 @@ public class BST<T extends Comparable<? super T>> {
 
     private BSTNode<T> removeHelp(T data, BSTNode<T> curr, BSTNode<T> node) {
         if (curr == null) {
-            throw new NoSuchElementException("Data not found in tree.");
+            throw new NoSuchElementException("ERROR : Data not found in tree.");
         }
         if (data.compareTo(curr.getData()) > 0) {
             curr.setRight(removeHelp(data, curr.getRight(), node));
