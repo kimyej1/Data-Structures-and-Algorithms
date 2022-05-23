@@ -74,7 +74,7 @@ public class ExternalChainingHashMap<K, V> {
     public V put(K key, V value) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (key == null || value == null) {
-            throw new IllegalArgumentException("Key or value is null");
+            throw new IllegalArgumentException("ERROR : Null Key or Value");
         }
         if ((size + 1) / (double) table.length > MAX_LOAD_FACTOR) {
             resizeBackingTable(table.length * 2 + 1);
@@ -110,7 +110,7 @@ public class ExternalChainingHashMap<K, V> {
     public V remove(K key) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (key == null) {
-            throw new IllegalArgumentException("Key can't be null");
+            throw new IllegalArgumentException("ERROR : Null Key");
         }
         int index = Math.abs(key.hashCode() % table.length);
         if (table[index] != null) {
@@ -131,7 +131,7 @@ public class ExternalChainingHashMap<K, V> {
                 return value;
             }
         }
-        throw new NoSuchElementException("Key doesn't exist");
+        throw new NoSuchElementException("ERROR : No Key");
     }
 
     /**
@@ -154,14 +154,12 @@ public class ExternalChainingHashMap<K, V> {
     private void resizeBackingTable(int length) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (length < 0 || length < size) {
-            throw new IllegalArgumentException(
-                    "Length should be greater than 0 or size");
+            throw new IllegalArgumentException("ERORR : Length should be greater than 0 or size");
         }
         ExternalChainingMapEntry<K, V>[] entries = new ExternalChainingMapEntry[length];
         for (ExternalChainingMapEntry entry : table) {
             if (entry != null) {
-                int index =
-                        Math.abs(entry.getKey().hashCode() % entries.length);
+                int index = Math.abs(entry.getKey().hashCode() % entries.length);
                 entries[index] = entry;
             }
         }

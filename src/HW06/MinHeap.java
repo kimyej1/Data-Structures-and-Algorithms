@@ -43,7 +43,7 @@ public class MinHeap<T extends Comparable<? super T>> {
     public void add(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (data == null) {
-            throw new IllegalArgumentException("Cannot add null data.");
+            throw new IllegalArgumentException("ERROR : Cannot add null data.");
         } else if (size == backingArray.length - 1) {
             resize();
             backingArray[size + 1] = data;
@@ -89,7 +89,7 @@ public class MinHeap<T extends Comparable<? super T>> {
     public T remove() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (isEmpty()) {
-            throw new NoSuchElementException("Heap is empty");
+            throw new NoSuchElementException("ERROR : Heap is empty");
         } else {
             T removed = backingArray[1];
             backingArray[1] = backingArray[size];

@@ -28,11 +28,11 @@ public class PatternMatching {
     public static List<Integer> boyerMoore(CharSequence pattern, CharSequence text, CharacterComparator comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (pattern == null || pattern.length() == 0) {
-            throw new IllegalArgumentException("Null Pattern");
+            throw new IllegalArgumentException("ERROR : Null Pattern");
         } else if (text == null) {
-            throw new IllegalArgumentException("Null text.");
+            throw new IllegalArgumentException("ERROR : Null text.");
         } else if (comparator == null) {
-            throw new IllegalArgumentException("Null comparator.");
+            throw new IllegalArgumentException("ERROR : Null comparator.");
         }
         List<Integer> list = new ArrayList<>();
         if (text.length() < pattern.length()) {
@@ -97,7 +97,7 @@ public class PatternMatching {
     public static Map<Character, Integer> buildLastTable(CharSequence pattern) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (pattern == null) {
-            throw new IllegalArgumentException("Null pattern");
+            throw new IllegalArgumentException("ERROR : Null pattern");
         }
         Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < pattern.length(); i++) {

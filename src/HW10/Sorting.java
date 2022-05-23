@@ -35,7 +35,7 @@ public class Sorting {
     public static <T> void bubbleSort(T[] arr, Comparator<T> comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (arr == null || comparator == null) {
-            throw new IllegalArgumentException("Null array or comparator");
+            throw new IllegalArgumentException("ERROR : Null array or comparator");
         }
 
         for (int i = 0; i < arr.length; i++) {
@@ -66,7 +66,7 @@ public class Sorting {
         public static <T > void selectionSort (T[]arr, Comparator < T > comparator){
             // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
             if (arr == null || comparator == null) {
-                throw new IllegalArgumentException("Null array or comparator");
+                throw new IllegalArgumentException("ERROR : Null array or comparator");
             }
             for (int i = 0; i < arr.length - 1; i++) {
                 int min = i;
@@ -100,7 +100,7 @@ public class Sorting {
         public static <T > void insertionSort (T[]arr, Comparator < T > comparator){
             // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
             if (arr == null || comparator == null) {
-                throw new IllegalArgumentException("Null array or comparator");
+                throw new IllegalArgumentException("ERROR : Null array or comparator");
             }
             for (int i = 1; i < arr.length; i++) {
                 T tmp = arr[i];
@@ -149,7 +149,7 @@ public class Sorting {
         public static <T > void mergeSort (T[]arr, Comparator < T > comparator){
             // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
             if (arr == null) {
-                throw new IllegalArgumentException("Null array");
+                throw new IllegalArgumentException("ERROR : Null array");
             } else if (comparator == null) {
                 throw new IllegalArgumentException(
                         "Null comparator");
@@ -230,7 +230,7 @@ public class Sorting {
         public static void lsdRadixSort ( int[] arr){
             // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
             if (arr == null) {
-                throw new IllegalArgumentException("Null array");
+                throw new IllegalArgumentException("ERROR : Null array");
             }
             LinkedList<Integer>[] buckets =
                     (LinkedList<Integer>[]) new LinkedList[19];

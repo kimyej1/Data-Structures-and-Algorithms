@@ -36,9 +36,9 @@ public class GraphAlgorithms {
     public static <T> List<Vertex<T>> bfs(Vertex<T> start, Graph<T> graph) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (graph == null) {
-            throw new IllegalArgumentException("Null graph.");
+            throw new IllegalArgumentException("ERROR : Null graph.");
         } else if (!graph.getVertices().contains(start)) {
-            throw new IllegalArgumentException("No start vertex");
+            throw new IllegalArgumentException("ERROR : No start vertex");
         }
         List<Vertex<T>> list = new ArrayList<>();
         Queue<Vertex<T>> queue = new LinkedList<>();
@@ -48,7 +48,7 @@ public class GraphAlgorithms {
         while (!queue.isEmpty()) {
             Vertex<T> curr = queue.peek();
             if (curr == null) {
-                throw new IllegalArgumentException("Null vertex");
+                throw new IllegalArgumentException("ERROR : Null vertex");
             }
             List<VertexDistance<T>> adj = adjList.get(curr);
             for (VertexDistance<T> vd : adj) {
@@ -93,9 +93,9 @@ public class GraphAlgorithms {
     public static <T> List<Vertex<T>> dfs(Vertex<T> start, Graph<T> graph) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (graph == null) {
-            throw new IllegalArgumentException("Null graph.");
+            throw new IllegalArgumentException("ERROR : Null graph.");
         } else if (!graph.getVertices().contains(start)) {
-            throw new IllegalArgumentException("No start vertex");
+            throw new IllegalArgumentException("ERROR : No start vertex");
         }
         List<Vertex<T>> list = new ArrayList<>();
         Map<Vertex<T>, List<VertexDistance<T>>> adjList = graph.getAdjList();
@@ -157,13 +157,13 @@ public class GraphAlgorithms {
     public static <T> Set<Edge<T>> prims(Vertex<T> start, Graph<T> graph) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if (start == null) {
-            throw new IllegalArgumentException("Null start vertex");
+            throw new IllegalArgumentException("ERROR : Null start vertex");
         }
         if (graph == null) {
-            throw new IllegalArgumentException("Null graph");
+            throw new IllegalArgumentException("ERROR : Null graph");
         }
         if (!graph.getVertices().contains(start)) {
-            throw new IllegalArgumentException("Start vertex not in graph");
+            throw new IllegalArgumentException("ERROR : Start vertex not in graph");
         }
         Set<Edge<T>> returnSet = new HashSet<>();
         Queue<Edge<T>> queue = new PriorityQueue<>();
