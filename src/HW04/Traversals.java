@@ -35,9 +35,11 @@ public class Traversals<T extends Comparable<? super T>> {
     }
 
     private void preorderHelper(List<T> list, TreeNode<T> node) {
-        if (node == null) {
+        if (node == null)
+        {
             return;
-        } else {
+        } else
+        {
             list.add(node.getData());
             preorderHelper(list, node.getLeft());
             preorderHelper(list, node.getRight());
@@ -66,9 +68,11 @@ public class Traversals<T extends Comparable<? super T>> {
     }
 
     private void inorderHelper(List<T> list, TreeNode<T> node) {
-        if (node == null) {
+        if (node == null)
+        {
             return;
-        } else {
+        } else
+        {
             inorderHelper(list, node.getLeft());
             list.add(node.getData());
             inorderHelper(list, node.getRight());
@@ -97,9 +101,11 @@ public class Traversals<T extends Comparable<? super T>> {
     }
 
     private void postorderHelper(List<T> list, TreeNode<T> node) {
-        if (node == null) {
+        if (node == null)
+        {
             return;
-        } else {
+        } else
+        {
             postorderHelper(list, node.getLeft());
             postorderHelper(list, node.getRight());
             list.add(node.getData());

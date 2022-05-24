@@ -31,20 +31,26 @@ public class AVL<T extends Comparable<? super T>> {
      */
     public void updateHeightAndBF(AVLNode<T> currentNode) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        int leftHeight = 0;
-        int rightHeight = 0;
-        if (currentNode.getLeft() == null) {
-            leftHeight = -1;
-        } else {
-            leftHeight = currentNode.getLeft().getHeight();
+        int leftH = 0;
+        int rightH = 0;
+
+        if (currentNode.getLeft() == null)
+        {
+            leftH = -1;
+        } else
+        {
+            leftH = currentNode.getLeft().getHeight();
         }
-        if (currentNode.getRight() == null) {
-            rightHeight = -1;
-        } else {
-            rightHeight = currentNode.getRight().getHeight();
+        if (currentNode.getRight() == null)
+        {
+            rightH = -1;
+        } else
+        {
+            rightH = currentNode.getRight().getHeight();
         }
-        currentNode.setHeight(Math.max(leftHeight, rightHeight) + 1);
-        currentNode.setBalanceFactor(leftHeight - rightHeight);
+
+        currentNode.setHeight(Math.max(leftH, rightH) + 1);
+        currentNode.setBalanceFactor(leftH - rightH);
     }
 
     /**
@@ -71,10 +77,13 @@ public class AVL<T extends Comparable<? super T>> {
     public AVLNode<T> rotateLeft(AVLNode<T> currentNode) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         AVLNode<T> right = currentNode.getRight();
+
         currentNode.setRight(right.getLeft());
         right.setLeft(currentNode);
+
         updateHeightAndBF(currentNode);
         updateHeightAndBF(right);
+
         return right;
     }
 
@@ -102,10 +111,13 @@ public class AVL<T extends Comparable<? super T>> {
     public AVLNode<T> rotateRight(AVLNode<T> currentNode) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         AVLNode<T> left = currentNode.getLeft();
+
         currentNode.setLeft(left.getRight());
         left.setRight(currentNode);
+
         updateHeightAndBF(currentNode);
         updateHeightAndBF(left);
+
         return left;
     }
 
@@ -132,16 +144,19 @@ public class AVL<T extends Comparable<? super T>> {
     public AVLNode<T> balance(AVLNode<T> currentNode) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
 
-        /* First, we update the height and balance factor of the current node. */
         updateHeightAndBF(currentNode);
 
-        if ( currentNode.getBalanceFactor() < -1 /* Condition for a right heavy tree. */ ) {
-            if ( currentNode.getRight().getBalanceFactor() > 0 /* Condition for a right-left rotation. */ ) {
+        if ( currentNode.getBalanceFactor() < -1)
+        {
+            if ( currentNode.getRight().getBalanceFactor() > 0)
+            {
                 currentNode.setRight(rotateRight(currentNode.getRight()));
             }
             currentNode = rotateLeft(currentNode);
-        } else if ( currentNode.getBalanceFactor() > 1  /* Condition for a left heavy tree. */ ) {
-            if ( currentNode.getLeft().getBalanceFactor() < 0 /* Condition for a left-right rotation. */ ) {
+        } else if ( currentNode.getBalanceFactor() > 1)
+        {
+            if ( currentNode.getLeft().getBalanceFactor() < 0)
+            {
                 currentNode.setLeft(rotateLeft(currentNode.getLeft()));
             }
             currentNode = rotateRight(currentNode);

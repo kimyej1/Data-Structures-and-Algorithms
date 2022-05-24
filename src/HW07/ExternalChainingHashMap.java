@@ -73,24 +73,29 @@ public class ExternalChainingHashMap<K, V> {
      */
     public V put(K key, V value) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (key == null || value == null) {
+        if (key == null || value == null)
+        {
             throw new IllegalArgumentException("ERROR : Null Key or Value");
         }
-        if ((size + 1) / (double) table.length > MAX_LOAD_FACTOR) {
+        if ((size + 1) / (double) table.length > MAX_LOAD_FACTOR)
+        {
             resizeBackingTable(table.length * 2 + 1);
         }
-        int index = Math.abs(key.hashCode() % table.length);
-        if (table[index] == null) {
-            table[index] = new ExternalChainingMapEntry<>(key, value);
-        } else {
-            ExternalChainingMapEntry<K, V> entry = table[index];
+        int idx = Math.abs(key.hashCode() % table.length);
+
+        if (table[idx] == null)
+        {
+            table[idx] = new ExternalChainingMapEntry<>(key, value);
+        } else
+        {
+            ExternalChainingMapEntry<K, V> entry = table[idx];
             while (entry.getNext() != null && !entry.getKey().equals(key)) {
                 entry = entry.getNext();
             }
             if (entry.getKey().equals(key)) {
-                V oldValue = entry.getValue();
+                V old = entry.getValue();
                 entry.setValue(value);
-                return oldValue;
+                return old;
             } else {
                 entry.setNext(new ExternalChainingMapEntry<>(key, value));
             }
@@ -109,22 +114,31 @@ public class ExternalChainingHashMap<K, V> {
      */
     public V remove(K key) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (key == null) {
+        if (key == null)
+        {
             throw new IllegalArgumentException("ERROR : Null Key");
         }
-        int index = Math.abs(key.hashCode() % table.length);
-        if (table[index] != null) {
+        int idx = Math.abs(key.hashCode() % table.length);
+
+        if (table[idx] != null)
+        {
             ExternalChainingMapEntry<K, V> prev = null;
-            ExternalChainingMapEntry<K, V> entry = table[index];
-            while (entry.getNext() != null && !entry.getKey().equals(key)) {
+            ExternalChainingMapEntry<K, V> entry = table[idx];
+
+            while (entry.getNext() != null && !entry.getKey().equals(key))
+            {
                 prev = entry;
                 entry = entry.getNext();
             }
-            if (entry.getKey().equals(key)) {
+            if (entry.getKey().equals(key))
+            {
                 V value = entry.getValue();
-                if (prev == null) {
-                    table[index] = entry.getNext();
-                } else {
+
+                if (prev == null)
+                {
+                    table[idx] = entry.getNext();
+                } else
+                {
                     prev.setNext(entry.getNext());
                 }
                 size--;
@@ -153,12 +167,15 @@ public class ExternalChainingHashMap<K, V> {
      */
     private void resizeBackingTable(int length) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (length < 0 || length < size) {
+        if (length < 0 || length < size)
+        {
             throw new IllegalArgumentException("ERORR : Length should be greater than 0 or size");
         }
         ExternalChainingMapEntry<K, V>[] entries = new ExternalChainingMapEntry[length];
-        for (ExternalChainingMapEntry entry : table) {
-            if (entry != null) {
+        for (ExternalChainingMapEntry entry : table)
+        {
+            if (entry != null)
+            {
                 int index = Math.abs(entry.getKey().hashCode() % entries.length);
                 entries[index] = entry;
             }

@@ -42,36 +42,45 @@ public class MinHeap<T extends Comparable<? super T>> {
      */
     public void add(T data) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (data == null) {
+        if (data == null)
+        {
             throw new IllegalArgumentException("ERROR : Cannot add null data.");
-        } else if (size == backingArray.length - 1) {
+        } else if (size == backingArray.length - 1)
+        {
             resize();
             backingArray[size + 1] = data;
             size++;
             upheap(size);
-        } else {
+        } else
+        {
             backingArray[size + 1] = data;
             size++;
             upheap(size);
         }
     }
 
-    private void resize() {
-        int newCap = (2 * backingArray.length);
-        T[] newArray = (T[]) new Comparable[newCap];
-        for (int i = 1; i <= size; i++) {
-            newArray[i] = backingArray[i];
+    private void resize()
+    {
+        int reCap = (2 * backingArray.length);
+        T[] reArray = (T[]) new Comparable[reCap];
+
+        for (int i = 1; i <= size; i++)
+        {
+            reArray[i] = backingArray[i];
         }
-        backingArray = newArray;
+        backingArray = reArray;
     }
 
     private void upheap(int i) {
-        while (i > 1) {
+        while (i > 1)
+        {
             int parent = i / 2;
-            if (backingArray[i].compareTo(backingArray[parent]) < 0) {
-                T temp = backingArray[parent];
+
+            if (backingArray[i].compareTo(backingArray[parent]) < 0)
+            {
+                T tmp = backingArray[parent];
                 backingArray[parent] = backingArray[i];
-                backingArray[i] = temp;
+                backingArray[i] = tmp;
             }
             i = parent;
         }
@@ -88,35 +97,44 @@ public class MinHeap<T extends Comparable<? super T>> {
      */
     public T remove() {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (isEmpty()) {
+        if (isEmpty())
+        {
             throw new NoSuchElementException("ERROR : Heap is empty");
-        } else {
-            T removed = backingArray[1];
+        } else
+        {
+            T remove = backingArray[1];
             backingArray[1] = backingArray[size];
             backingArray[size] = null;
             size--;
             heapRec(1);
-            return removed;
+
+            return remove;
         }
     }
-    private boolean isEmpty() {
+    private boolean isEmpty()
+    {
         return (size == 0);
     }
 
-    private void heapRec(int curr) {
+    private void heapRec(int curr)
+    {
         int right = (2 * curr) + 1;
         int left = (2 * curr);
         int min = curr;
-        if (left <= size && backingArray[left].compareTo(backingArray[min]) < 0) {
+
+        if (left <= size && backingArray[left].compareTo(backingArray[min]) < 0)
+        {
             min = left;
         }
-        if (right <= size && backingArray[right].compareTo(backingArray[min]) < 0) {
+        if (right <= size && backingArray[right].compareTo(backingArray[min]) < 0)
+        {
             min = right;
         }
-        if (min <= size && backingArray[min].compareTo(backingArray[curr]) < 0) {
-            T temp = backingArray[curr];
+        if (min <= size && backingArray[min].compareTo(backingArray[curr]) < 0)
+        {
+            T tmp = backingArray[curr];
             backingArray[curr] = backingArray[min];
-            backingArray[min] = temp;
+            backingArray[min] = tmp;
             heapRec(min);
             heapRec(curr);
         }

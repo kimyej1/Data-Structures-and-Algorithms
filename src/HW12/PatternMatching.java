@@ -27,41 +27,54 @@ public class PatternMatching {
      */
     public static List<Integer> boyerMoore(CharSequence pattern, CharSequence text, CharacterComparator comparator) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (pattern == null || pattern.length() == 0) {
+        if (pattern == null || pattern.length() == 0)
+        {
             throw new IllegalArgumentException("ERROR : Null Pattern");
-        } else if (text == null) {
+        } else if (text == null)
+        {
             throw new IllegalArgumentException("ERROR : Null text.");
-        } else if (comparator == null) {
+        } else if (comparator == null)
+        {
             throw new IllegalArgumentException("ERROR : Null comparator.");
         }
+
         List<Integer> list = new ArrayList<>();
-        if (text.length() < pattern.length()) {
+        if (text.length() < pattern.length())
+        {
             return list;
         }
         Map<Character, Integer> map = buildLastTable(pattern);
         int i = 0;
-        while (i <= text.length() - pattern.length()) {
-            if (pattern.length() + i > text.length()) {
+        while (i <= text.length() - pattern.length())
+        {
+            if (pattern.length() + i > text.length())
+            {
                 return list;
             }
             int j = pattern.length() - 1;
-            while (j >= 0 && comparator.compare(text.charAt(i + j),
-                    pattern.charAt(j)) == 0) {
+            while (j >= 0 && comparator.compare(text.charAt(i + j), pattern.charAt(j)) == 0)
+            {
                 j--;
             }
-            if (j == -1) {
+            if (j == -1)
+            {
                 list.add(i);
                 i++;
-            } else {
+            } else
+            {
                 int k;
-                if (map.containsKey(text.charAt(i + j))) {
+                if (map.containsKey(text.charAt(i + j)))
+                {
                     k = map.get(text.charAt(i + j));
-                } else {
+                } else
+                {
                     k = -1;
                 }
-                if (k < j) {
+                if (k < j)
+                {
                     i = i + j - k;
-                } else {
+                } else
+                {
                     i++;
                 }
             }
@@ -96,11 +109,13 @@ public class PatternMatching {
      */
     public static Map<Character, Integer> buildLastTable(CharSequence pattern) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (pattern == null) {
+        if (pattern == null)
+        {
             throw new IllegalArgumentException("ERROR : Null pattern");
         }
         Map<Character, Integer> map = new HashMap<>();
-        for (int i = 0; i < pattern.length(); i++) {
+        for (int i = 0; i < pattern.length(); i++)
+        {
             map.put(pattern.charAt(i), i);
         }
         return map;

@@ -1,9 +1,7 @@
 package HW10;
 
 import java.util.Comparator;
-import java.util.List;
 import java.util.LinkedList;
-import java.util.Queue;
 
 
 
@@ -11,39 +9,6 @@ import java.util.Queue;
  * Your implementation of various iterative sorting algorithms.
  */
 public class Sorting {
-
-    /**
-     * Implement bubble sort.
-     * <p>
-     * It should be:
-     * in-place
-     * stable
-     * adaptive
-     * <p>
-     * Have a worst case running time of: O(n^2)
-     * And a best case running time of: O(n)
-     * <p>
-     * NOTE: You should implement bubble sort with the last swap optimization.
-     * <p>
-     * You may assume that the passed in array and comparator
-     * are both valid and will never be null.
-     *
-     * @param <T>        Data type to sort.
-     * @param arr        The array that must be sorted after the method runs.
-     * @param comparator The Comparator used to compare the data in arr.
-     */
-    public static <T> void bubbleSort(T[] arr, Comparator<T> comparator) {
-        // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (arr == null || comparator == null) {
-            throw new IllegalArgumentException("ERROR : Null array or comparator");
-        }
-
-        for (int i = 0; i < arr.length; i++) {
-            while (arr[i] < arr[arr.length - 1]) {
-
-
-            }
-        }
 
         /**
          * Implement selection sort.
@@ -65,13 +30,17 @@ public class Sorting {
          */
         public static <T > void selectionSort (T[]arr, Comparator < T > comparator){
             // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-            if (arr == null || comparator == null) {
+            if (arr == null || comparator == null)
+            {
                 throw new IllegalArgumentException("ERROR : Null array or comparator");
             }
-            for (int i = 0; i < arr.length - 1; i++) {
+            for (int i = 0; i < arr.length - 1; i++)
+            {
                 int min = i;
-                for (int j = i + 1; j < arr.length; j++) {
-                    if (comparator.compare(arr[j], arr[min]) < 0) {
+                for (int j = i + 1; j < arr.length; j++)
+                {
+                    if (comparator.compare(arr[j], arr[min]) < 0)
+                    {
                         min = j;
                     }
                 }
@@ -99,20 +68,24 @@ public class Sorting {
          */
         public static <T > void insertionSort (T[]arr, Comparator < T > comparator){
             // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-            if (arr == null || comparator == null) {
+            if (arr == null || comparator == null)
+            {
                 throw new IllegalArgumentException("ERROR : Null array or comparator");
             }
-            for (int i = 1; i < arr.length; i++) {
+            for (int i = 1; i < arr.length; i++)
+            {
                 T tmp = arr[i];
                 int j = i - 1;
-                while (j >= 0 && comparator.compare(arr[j], tmp) > 0) {
+                while (j >= 0 && comparator.compare(arr[j], tmp) > 0)
+                {
                     arr[j + 1] = arr[j--];
                 }
                 arr[j + 1] = tmp;
             }
         }
 
-        private static <T > void swap (T[]arr,int a, int b){
+        private static <T > void swap (T[]arr,int a, int b)
+        {
             T tmp = arr[a];
             arr[a] = arr[b];
             arr[b] = tmp;
@@ -148,27 +121,34 @@ public class Sorting {
          */
         public static <T > void mergeSort (T[]arr, Comparator < T > comparator){
             // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-            if (arr == null) {
+            if (arr == null)
+            {
                 throw new IllegalArgumentException("ERROR : Null array");
-            } else if (comparator == null) {
-                throw new IllegalArgumentException(
-                        "Null comparator");
+            } else if (comparator == null)
+            {
+                throw new IllegalArgumentException("Null comparator");
             }
             int mid = arr.length / 2;
-            mergeHelp(arr, comparator);
+            mergeHelper(arr, comparator);
         }
 
-        private static <T> void mergeHelp(T[]arr, Comparator < T > comparator){
-            if (arr.length < 2) {
+        private static <T> void mergeHelper(T[]arr, Comparator < T > comparator)
+        {
+            if (arr.length < 2)
+            {
                 return;
             }
             int mid = arr.length / 2;
+
             T[] left = (T[]) new Object[mid];
             T[] right = (T[]) new Object[arr.length - mid];
-            for (int i = 0; i < mid; i++) {
+
+            for (int i = 0; i < mid; i++)
+            {
                 left[i] = arr[i];
             }
-            for (int i = mid; i < arr.length; i++) {
+            for (int i = mid; i < arr.length; i++)
+            {
                 right[i - mid] = arr[i];
             }
             mergeSort(left, comparator);
@@ -176,23 +156,29 @@ public class Sorting {
             merge(arr, left, right, mid, arr.length - mid, comparator);
         }
 
-        private static <T > void merge (T[]a, T[]left, T[]right,int l,
-        int r, Comparator<T > comparator){
+        private static <T > void merge (T[]a, T[]left, T[]right,int l, int r, Comparator<T > comparator)
+        {
             int i = 0;
             int j = 0;
             int k = 0;
-            while (i < l && j < r) {
+
+            while (i < l && j < r)
+            {
                 int c = comparator.compare(left[i], right[j]);
-                if (c <= 0) {
+                if (c <= 0)
+                {
                     a[k++] = left[i++];
-                } else {
+                } else
+                {
                     a[k++] = right[j++];
                 }
             }
-            while (i < l) {
+            while (i < l)
+            {
                 a[k++] = left[i++];
             }
-            while (j < r) {
+            while (j < r)
+            {
                 a[k++] = right[j++];
             }
         }
@@ -229,30 +215,40 @@ public class Sorting {
          */
         public static void lsdRadixSort ( int[] arr){
             // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-            if (arr == null) {
+            if (arr == null)
+            {
                 throw new IllegalArgumentException("ERROR : Null array");
             }
-            LinkedList<Integer>[] buckets =
-                    (LinkedList<Integer>[]) new LinkedList[19];
+            LinkedList<Integer>[] buckets = (LinkedList<Integer>[]) new LinkedList[19];
+
             int mod = 10;
             int div = 1;
-            boolean cont = true;
-            while (cont) {
-                cont = false;
-                for (int num : arr) {
+            boolean c = true;
+
+            while (c)
+            {
+                c = false;
+                for (int num : arr)
+                {
                     int bucket = num / div;
-                    if (bucket / 10 != 0) {
-                        cont = true;
+                    if (bucket / 10 != 0)
+                    {
+                        c = true;
                     }
-                    if (buckets[bucket % mod + 9] == null) {
+                    if (buckets[bucket % mod + 9] == null)
+                    {
                         buckets[bucket % mod + 9] = new LinkedList<>();
                     }
                     buckets[bucket % mod + 9].add(num);
                 }
                 int arrIdx = 0;
-                for (int i = 0; i < buckets.length; i++) {
-                    if (buckets[i] != null) {
-                        for (int num : buckets[i]) {
+
+                for (int i = 0; i < buckets.length; i++)
+                {
+                    if (buckets[i] != null)
+                    {
+                        for (int num : buckets[i])
+                        {
                             arr[arrIdx++] = num;
                         }
                         buckets[i].clear();

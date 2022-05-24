@@ -54,14 +54,14 @@ public class ArrayQueue<T> {
 
         if (size == backingArray.length)
         {
-            T[] tmpArray = (T[]) new Object[backingArray.length * 2];
+            T[] temp = (T[]) new Object[backingArray.length * 2];
 
             for (int i = 0; i < backingArray.length; i++)
             {
-                tmpArray[i] = backingArray[(front + i) % backingArray.length];
+                temp[i] = backingArray[(front + i) % backingArray.length];
             }
 
-            backingArray = tmpArray;
+            backingArray = temp;
             front = 0;
         }
 
@@ -91,7 +91,7 @@ public class ArrayQueue<T> {
             throw new NoSuchElementException("ERROR: Empty queue");
         }
 
-        T tmp = backingArray[front];
+        T temp = backingArray[front];
         backingArray[front] = null;
         front = (front + 1) % backingArray.length;
 
@@ -99,7 +99,7 @@ public class ArrayQueue<T> {
         {
             front = 0;
         }
-        return tmp;
+        return temp;
     }
 
     /**

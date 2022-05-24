@@ -35,9 +35,11 @@ public class GraphAlgorithms {
      */
     public static <T> List<Vertex<T>> bfs(Vertex<T> start, Graph<T> graph) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (graph == null) {
+        if (graph == null)
+        {
             throw new IllegalArgumentException("ERROR : Null graph.");
-        } else if (!graph.getVertices().contains(start)) {
+        } else if (!graph.getVertices().contains(start))
+        {
             throw new IllegalArgumentException("ERROR : No start vertex");
         }
         List<Vertex<T>> list = new ArrayList<>();
@@ -45,14 +47,20 @@ public class GraphAlgorithms {
         Map<Vertex<T>, List<VertexDistance<T>>> adjList = graph.getAdjList();
         queue.add(start);
         list.add(start);
-        while (!queue.isEmpty()) {
+
+        while (!queue.isEmpty())
+        {
             Vertex<T> curr = queue.peek();
-            if (curr == null) {
+
+            if (curr == null)
+            {
                 throw new IllegalArgumentException("ERROR : Null vertex");
             }
             List<VertexDistance<T>> adj = adjList.get(curr);
-            for (VertexDistance<T> vd : adj) {
-                if (!list.contains(vd.getVertex())) {
+            for (VertexDistance<T> vd : adj)
+            {
+                if (!list.contains(vd.getVertex()))
+                {
                     queue.add(vd.getVertex());
                     list.add(vd.getVertex());
                 }
@@ -92,27 +100,28 @@ public class GraphAlgorithms {
      */
     public static <T> List<Vertex<T>> dfs(Vertex<T> start, Graph<T> graph) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (graph == null) {
+        if (graph == null)
+        {
             throw new IllegalArgumentException("ERROR : Null graph.");
-        } else if (!graph.getVertices().contains(start)) {
+        } else if (!graph.getVertices().contains(start))
+        {
             throw new IllegalArgumentException("ERROR : No start vertex");
         }
         List<Vertex<T>> list = new ArrayList<>();
         Map<Vertex<T>, List<VertexDistance<T>>> adjList = graph.getAdjList();
         Set<Vertex<T>> vlist = new HashSet<>();
-        dfsHelp(start, vlist, list, adjList);
+        dfsHelper(start, vlist, list, adjList);
         return list;
     }
-    private static <T> void dfsHelp(Vertex<T> curr,
-                                    Set<Vertex<T>> vlist,
-                                    List<Vertex<T>> list,
-                                    Map<Vertex<T>,
-                                            List<VertexDistance<T>>> adjList) {
+    private static <T> void dfsHelper(Vertex<T> curr, Set<Vertex<T>> vlist, List<Vertex<T>> list, Map<Vertex<T>, List<VertexDistance<T>>> adjList)
+    {
         list.add(curr);
         vlist.add(curr);
-        for (VertexDistance<T> v: adjList.get(curr)) {
-            if (!vlist.contains(v.getVertex())) {
-                dfsHelp(v.getVertex(), vlist, list, adjList);
+        for (VertexDistance<T> vertD: adjList.get(curr))
+        {
+            if (!vlist.contains(vertD.getVertex()))
+            {
+                dfsHelper(vertD.getVertex(), vlist, list, adjList);
             }
         }
     }
@@ -156,47 +165,53 @@ public class GraphAlgorithms {
      */
     public static <T> Set<Edge<T>> prims(Vertex<T> start, Graph<T> graph) {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
-        if (start == null) {
+        if (start == null)
+        {
             throw new IllegalArgumentException("ERROR : Null start vertex");
         }
-        if (graph == null) {
+        if (graph == null)
+        {
             throw new IllegalArgumentException("ERROR : Null graph");
         }
-        if (!graph.getVertices().contains(start)) {
+        if (!graph.getVertices().contains(start))
+        {
             throw new IllegalArgumentException("ERROR : Start vertex not in graph");
         }
+
         Set<Edge<T>> returnSet = new HashSet<>();
         Queue<Edge<T>> queue = new PriorityQueue<>();
         Set<Vertex<T>> visitedSet = new HashSet<>();
         Map<Vertex<T>, List<VertexDistance<T>>> vMap = graph.getAdjList();
 
-        for (VertexDistance<T> v: vMap.get(start)) {
-            queue.add(new Edge<>(start, v.getVertex(), v.getDistance()));
+        for (VertexDistance<T> vertD: vMap.get(start))
+        {
+            queue.add(new Edge<>(start, vertD.getVertex(), vertD.getDistance()));
         }
 
         visitedSet.add(start);
 
-        while (!queue.isEmpty()
-                && !(visitedSet.size() == graph.getVertices().size())) {
+        while (!queue.isEmpty() && !(visitedSet.size() == graph.getVertices().size()))
+        {
             Edge<T> currEdge = queue.remove();
-            if (!visitedSet.contains(currEdge.getV())) {
-                visitedSet.add(currEdge.getV());
-                returnSet.add(new Edge<>(currEdge.getU(), currEdge.getV(),
-                        currEdge.getWeight()));
-                returnSet.add(new Edge<>(currEdge.getV(), currEdge.getU(),
-                        currEdge.getWeight()));
 
-                for (VertexDistance<T> v: vMap.get(currEdge.getV())) {
-                    if (!visitedSet.contains(v.getVertex())) {
-                        queue.add(new Edge<>(currEdge.getV(), v.getVertex(),
-                                v.getDistance()));
+            if (!visitedSet.contains(currEdge.getV()))
+            {
+                visitedSet.add(currEdge.getV());
+                returnSet.add(new Edge<>(currEdge.getU(), currEdge.getV(), currEdge.getWeight()));
+                returnSet.add(new Edge<>(currEdge.getV(), currEdge.getU(), currEdge.getWeight()));
+
+                for (VertexDistance<T> vertD: vMap.get(currEdge.getV()))
+                {
+                    if (!visitedSet.contains(vertD.getVertex()))
+                    {
+                        queue.add(new Edge<>(currEdge.getV(), vertD.getVertex(), vertD.getDistance()));
                     }
                 }
             }
         }
 
-        if ((returnSet.size() / 2) == graph.getVertices().size() - 1) {
-            //checks edge case of disconnected graph
+        if ((returnSet.size() / 2) == graph.getVertices().size() - 1)
+        {
             return returnSet;
         } else {
             return null;

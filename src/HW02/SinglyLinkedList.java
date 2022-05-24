@@ -30,7 +30,7 @@ public class SinglyLinkedList<T> {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if(data == null)
         {
-            throw new IllegalArgumentException("Null data Exception");
+            throw new IllegalArgumentException("ERROR : Null data Exception");
         } else
         {
             SinglyLinkedListNode<T> tmp = new SinglyLinkedListNode<>(data);
@@ -62,7 +62,7 @@ public class SinglyLinkedList<T> {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if(data == null)
         {
-            throw new IllegalArgumentException("Null data Exception");
+            throw new IllegalArgumentException("ERROR : Null data Exception");
         } else
         {
             SinglyLinkedListNode<T> tmp = new SinglyLinkedListNode<>(data);
@@ -93,7 +93,7 @@ public class SinglyLinkedList<T> {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if(size == 0)
         {
-            throw new NoSuchElementException("Empty List");
+            throw new NoSuchElementException("ERROR : Empty List");
         } else
         {
             SinglyLinkedListNode<T> tmp = head;
@@ -125,7 +125,7 @@ public class SinglyLinkedList<T> {
         // WRITE YOUR CODE HERE (DO NOT MODIFY METHOD HEADER)!
         if(size == 0)
         {
-            throw new NoSuchElementException("Empty List");
+            throw new NoSuchElementException("ERROR : Empty List");
 
         } else
         {
